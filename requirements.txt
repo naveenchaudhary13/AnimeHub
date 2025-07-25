@@ -1,9 +1,11 @@
 asgiref==3.9.1
 Brotli==1.1.0
 certifi==2025.7.14
+cffi==1.17.1
 charset-normalizer==3.4.2
 click==8.2.1
 colorama==0.4.6
+cryptography==45.0.5
 Django==5.2.4
 duckduckgo-search==0.9
 Faker==37.4.2
@@ -15,6 +17,7 @@ mysqlclient==2.2.7
 packaging==25.0
 pillow==11.3.0
 primp==0.15.0
+pycparser==2.22
 PyMySQL==1.1.1
 python-dotenv==1.1.1
 requests==2.32.4
