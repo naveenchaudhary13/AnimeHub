@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto py-6">
+    <h1 class="text-3xl font-bold mb-4 text-center">Browse by Genre</h1>
+
+    <!-- Genre Buttons -->
+    <section class="pb-10 flex flex-wrap justify-center">
+        <div class="max-w-6xl mx-auto px-4">
+
+        <div class="flex flex-wrap gap-3">
+            <button
+            onclick="filterGenre('all', this)"
+            class="genre-btn bg-purple-700 text-white px-4 py-2 rounded-full text-sm hover:bg-purple-600 transition active-genre"
+            >
+            All Genres
+            </button>
+
+            {% for genre in genres %}
+            <button
+                onclick="filterGenre('{{ genre.slug }}', this)"
+                class="genre-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-full text-sm hover:bg-purple-600 transition"
+            >
+                {{ genre.name }}
+            </button>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+
+    <!-- Anime Lists by Genre -->
+    <div id="anime-lists">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 anime-group genre-all">
+            {% for anime in all_anime %}
+            {% include 'anime_card.html' with anime=anime %}
+            {% endfor %}
+        </div>
+
+        {% for genre in genres %}
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 anime-group genre-{{ genre.slug }} hidden">
+            {% for anime in genre.animes.all %}
+                {% include 'anime_card.html' with anime=anime %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

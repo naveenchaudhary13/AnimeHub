@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ anime.title }} | AnimeGanja{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto py-10 px-4">
+
+  <!-- Anime Header -->
+  <div class="flex flex-col md:flex-row gap-6 items-start bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-300 rounded-xl shadow-md p-6">
+    {% if anime.thumbnail %}
+      <img src="{{ anime.thumbnail.url }}" alt="{{ anime.title }}"
+           class="w-100 md:w-[350px] h-auto rounded-lg shadow-md" />
+    {% endif %}
+
+    <div class="flex-1">
+      <h1 class="text-3xl font-bold text-gray-900">{{ anime.title }}</h1>
+
+      {% if anime.release_date %}
+        <p class="text-sm text-gray-100 mt-1">
+          Released on: <span class="font-medium">{{ anime.release_date }}</span>
+        </p>
+      {% endif %}
+
+      <p class="text-sm text-gray-100 mt-1">
+        No. of Episodes: <span class="font-medium">{{ anime.episodes.all|length }}</span>
+      </p>
+
+      <!-- Genres -->
+      <div class="mt-3 flex flex-wrap gap-2">
+        {% for genre in anime.genres.all %}
+          <span class="text-sm bg-indigo-100 text-indigo-700 px-2.5 py-0.5 rounded-full">
+            {{ genre.name }}
+          </span>
+        {% endfor %}
+      </div>
+
+      <!-- Description -->
+      <p class="mt-4 text-gray-900 leading-relaxed">
+        {{ anime.description }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Episodes -->
+  <div class="mt-10">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Episodes ({{ anime.episode_count }})</h2>
+
+    {% if anime.episodes.all %}
+      <div class="space-y-2">
+        {% for episode in anime.episodes.all %}
+          <div class="bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-300 rounded-lg p-4 hover:shadow transition">
+            <a href="{% url 'episode_detail' anime.slug episode.slug %}" class="block text-lg font-medium text-indigo-950 hover:text-indigo-600">
+              Episode {{ episode.episode_number }}: {{ episode.title }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-gray-500">No episodes available yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}AnimeHub | Streaming Anime{% endblock %}</title>
+
+		<link rel="icon" href="{% static 'image/icon.png' %}" />
+
+		<!-- Tailwind CSS -->
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<!-- Custom CSS -->
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+	</head>
+
+	<body class="bg-gradient-to-r from-purple-200 via-indigo-200 to-purple-100">
+		<!-- Navbar -->
+		{% include 'navbar.html' %}
+
+		<!-- Page Content -->
+		<main class="min-h-screen px-4 py-6">
+			{% block content %}{% endblock %}
+		</main>
+
+		<!-- Footer -->
+		<footer
+			class="bg-gradient-to-r from-purple-800 via-indigo-900 to-purple-700 text-white text-center py-6 mt-auto"
+		>
+			<p class="text-sm">&copy; 2025 AnimeHub. All rights reserved.</p>
+            <p class="text-sm">Made with ❤️ by <a href="https://github.com/naveenchaudhary13">Naveen Chaudhary</a></p>
+		</footer>
+
+		<!-- Custom JS -->
+		<script src="{% static 'js/script.js' %}"></script>
+	</body>
+</html>

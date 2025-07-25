@@ -1,0 +1,15 @@
+<a href="{% url 'anime_detail' anime.slug %}" class="block bg-white rounded-lg shadow hover:shadow-lg transition">
+  {% if anime.thumbnail %}
+    <div class="aspect-video w-full overflow-hidden rounded-t-lg">
+      <img src="{{ anime.thumbnail.url }}" alt="{{ anime.title }}" class="w-full h-full object-cover">
+    </div>
+  {% endif %}
+  <div class="p-3">
+    <h3 class="text-sm font-semibold truncate">{{ anime.title }}</h3>
+    <div class="mt-1 flex flex-wrap gap-1">
+      {% for genre in anime.genres.all %}
+        <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">{{ genre.name }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</a>
