@@ -8,9 +8,11 @@ Django==5.2.4
 duckduckgo-search==0.9
 Faker==37.4.2
 git-filter-repo==2.47.0
+gunicorn==23.0.0
 idna==3.10
 lxml==6.0.0
 mysqlclient==2.2.7
+packaging==25.0
 pillow==11.3.0
 primp==0.15.0
 PyMySQL==1.1.1
